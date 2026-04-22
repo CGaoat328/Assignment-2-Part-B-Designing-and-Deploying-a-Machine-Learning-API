@@ -61,7 +61,9 @@ This project uses FastAPI, which automatically generates interactive API documen
 
 The /docs endpoint shows the available endpoints, request body format, response format, and allows live testing of the API.
 
+## API Performance
 
+The API is designed for real-time prediction. Performance can be measured using response time and memory usage while the FastAPI service is running. Since Logistic Regression is a lightweight model, the service is expected to respond quickly with low resource usage.
 
 ## Project Files
 
