@@ -36,7 +36,8 @@ SELECTED_FEATURES = [
     "Debt ratio %",
     "Net worth/Assets",
 ]
- 
+
+# load_data()
 def load_data(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(
@@ -47,6 +48,7 @@ def load_data(path: Path) -> pd.DataFrame:
     return df
 
 
+# validate_columns()
 def validate_columns(df: pd.DataFrame) -> None:
     required = [TARGET_COLUMN] + SELECTED_FEATURES
     missing = [col for col in required if col not in df.columns]
@@ -54,6 +56,7 @@ def validate_columns(df: pd.DataFrame) -> None:
         raise ValueError(f"Missing required columns: {missing}")
 
 
+# build_pipeline()
 def build_pipeline() -> Pipeline:
     return Pipeline(
         steps=[
@@ -71,7 +74,7 @@ def build_pipeline() -> Pipeline:
         ]
     )
 
-
+# evaluate()
 def evaluate(model: Pipeline, X_test: pd.DataFrame, y_test: pd.Series) -> dict:
     y_pred = model.predict(X_test)
     y_prob = model.predict_proba(X_test)[:, 1]
@@ -89,7 +92,7 @@ def evaluate(model: Pipeline, X_test: pd.DataFrame, y_test: pd.Series) -> dict:
         ),
     }
 
-
+# main() steps
 def main() -> None:
     # Step 1: Load the dataset
     print("Loading data...")
